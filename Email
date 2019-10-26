@@ -4,10 +4,17 @@ from email.mime.multipart import MIMEMultipart
 import time
 
 
-
 def heading():
-    print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS\n\033[0;32mVersion:1.0\trelease date:26-10-2019\033[0m\n')
-    print('\033[0;34;40m',time.asctime(),'\033[0m\n')
+    print('\033[1;34m----------------------------------------\n\033[0m')
+    print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS')
+    print('☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮')
+    print('\033[0;32mVersion:1.0\nrelease date:26-10-2019\033[0m\n')
+    print('\033[0;34;40m',time.asctime(),'\033[0m')
+    print('☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮☮')
+
+def topic():
+    print('\033[31m【E】【M】【A】【I】【L】 【B】【O】【M】【B】【I】【N】【G】\n💣💣\033[34m░▒▓█►─═  βｏ𝐦в ═─◄█▓▒░\033[0m\n')
+
 
 
 def subject1():
@@ -25,23 +32,6 @@ def password():
     return password
 
 
-def continue_email():
-        receiver_ID = input('\033[31mEnter Receiver Email ID:\033[0m')
-
-        msg = MIMEMultipart()
-        msg['From'] = sender_ID()
-        msg['To'] = receiver_ID
-        msg['subject'] = subject1()
-        body = messagebody()
-        msg.attach(MIMEText(body, 'plain'))
-        text = msg.as_string()
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(sender_ID(),password())
-        server.sendmail(sender_ID(),receiver_ID,text)
-        server.quit()
-
-
 def duration():
     while True:
         try:
@@ -49,14 +39,14 @@ def duration():
             if c >= 1:
                 break
         except ValueError:
-            print('\nEnter Valid Input')
+            print('\n𝔀𝓪𝓻𝓷𝓲𝓷𝓰!!!!\nEnter Valid Input')
     return c
 
 
 def numberofmailtosend():
     while True:
         try:
-            c = int(input('\nEnter, Number of times you what to send this message to receiver (Range 1 to 10): '))
+            c = int(input('\n\033[31mEnter, Number of times you what to send this message to receiver (Range 1 to 10): \033[0m'))
             if c <= 10 and c >= 1:
                 break
             print('\nEnter value within Range (1 to 10)')
@@ -90,12 +80,16 @@ def main():
         server.sendmail(c, receiver_ID, text)
         server.quit()
 
-        print(f'\033[31m{count}\0330m Message Send to \033[31m{receiver_ID}\033[0m')
+        print(f'\033[31m{count}\033[0m Message Send to \033[31m{receiver_ID}\033[0m')
         count += 1
+        print(f'\nNext Message shall be release after \033[1;31m{f}\033[0m seconds ')
         if count >= counttotal:
             time.sleep(3)
-            print('\nThank You and team to support to develop this tool.\nFORTIFY SOLUTIONS')
+            print('\n\033[1;35mWe like to thanks all team members for its support and effort to develop this tool!!!!!')
+            print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS\n\033[0m')
             break
 
 heading()
+topic()
 main()
+topic()
