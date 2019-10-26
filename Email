@@ -1,0 +1,114 @@
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import time
+import socket
+
+
+def heading():
+    print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS\n\033[0;32mVersion:1.0\trelease date:18-10-2019\033[0m\n')
+    print('\033[0;3240m',time.asctime(),'\033[0m')
+
+
+def subject1():
+    subject = input('Email Subject :')
+    return subject
+
+def messagebody():
+    #print("Note: Connect on port 587 if you're using TLS and Connect to smtp.gmail.com on port 465, if you're using SSL")
+    message = []
+    message1 = input('Enter the message: ')
+    message2 = socket.gethostbyaddr(socket.gethostname())
+    message3 = socket.gethostname()
+    #print(message1)
+    #print(message2)
+    #print(message3)
+    message = (message1,message2,message3)
+    #print(message)
+    #message.append(message1,message2,message3)
+    return message
+
+
+def sender_ID():
+    sender_ID = input('Enter Sender Email ID: ')
+    return  sender_ID
+
+
+def password():
+    password = input('Enter login password :')
+    return password
+
+
+def continue_email():
+        receiver_ID = input('Enter Receiver Email ID:')
+
+        msg = MIMEMultipart()
+        msg['From'] = sender_ID()
+        msg['To'] = receiver_ID
+        msg['subject'] = subject1()
+        body = messagebody()
+        msg.attach(MIMEText(body, 'plain'))
+        text = msg.as_string()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_ID(),password())
+        server.sendmail(sender_ID(),receiver_ID,text)
+        server.quit()
+
+
+def duration():
+    while True:
+        try:
+            c = int(input('Enter time (Seconds) period/Span to Send next E-mail : '))
+            if c >= 1:
+                break
+        except ValueError:
+            print('Enter Valid Input')
+    return c
+
+
+def numberofmailtosend():
+    while True:
+        try:
+            c = int(input('Enter, Number of Times to Send this message (Range 1 to 10): '))
+            if c <= 10 and c >= 1:
+                break
+            print('Enter value within Range (1 to 10)')
+        except ValueError:
+            print('Enter Valid Input')
+    return c
+
+
+
+def main():
+    a = subject1()
+    c = sender_ID()
+    d = password()
+    receiver_ID = input('Enter Receiver Email ID:')
+    e = input('message: ')
+    f = duration()
+    counttotal = numberofmailtosend()
+    count = 1
+    while True:
+        time.sleep(f)
+        msg = MIMEMultipart()
+        msg['From'] = c
+        msg['To'] = receiver_ID
+        msg['subject'] = a
+        body = e
+        msg.attach(MIMEText(body,'html'))
+        text = msg.as_string()
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(c, d)
+        server.sendmail(c, receiver_ID, text)
+        server.quit()
+
+        print(f'{count} Message Send to {receiver_ID}')
+        count += 1
+        if count >= counttotal:
+            print('Thank You')
+            break
+
+heading()
+main()
