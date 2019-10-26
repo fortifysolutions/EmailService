@@ -2,45 +2,31 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import time
-import socket
+
 
 
 def heading():
-    print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS\n\033[0;32mVersion:1.0\trelease date:18-10-2019\033[0m\n')
-    print('\033[0;3240m',time.asctime(),'\033[0m')
+    print('\n\033[1;31mFORTIFY\033[0m SOLUTIONS\n\033[0;32mVersion:1.0\trelease date:26-10-2019\033[0m\n')
+    print('\033[0;34;40m',time.asctime(),'\033[0m\n')
 
 
 def subject1():
-    subject = input('Email Subject :')
+    subject = input('\033[31mEmail Subject :\033[0m')
     return subject
-
-def messagebody():
-    #print("Note: Connect on port 587 if you're using TLS and Connect to smtp.gmail.com on port 465, if you're using SSL")
-    message = []
-    message1 = input('Enter the message: ')
-    message2 = socket.gethostbyaddr(socket.gethostname())
-    message3 = socket.gethostname()
-    #print(message1)
-    #print(message2)
-    #print(message3)
-    message = (message1,message2,message3)
-    #print(message)
-    #message.append(message1,message2,message3)
-    return message
 
 
 def sender_ID():
-    sender_ID = input('Enter Sender Email ID: ')
+    sender_ID = input('\033[31mEnter Sender Email ID:\033[0m ')
     return  sender_ID
 
 
 def password():
-    password = input('Enter login password :')
+    password = input('\033[31mSender Log-In password :\033[0m')
     return password
 
 
 def continue_email():
-        receiver_ID = input('Enter Receiver Email ID:')
+        receiver_ID = input('\033[31mEnter Receiver Email ID:\033[0m')
 
         msg = MIMEMultipart()
         msg['From'] = sender_ID()
@@ -59,23 +45,23 @@ def continue_email():
 def duration():
     while True:
         try:
-            c = int(input('Enter time (Seconds) period/Span to Send next E-mail : '))
+            c = int(input('\n\033[31mEnter time (Seconds) duration to send E-mail(s) : \033[0m'))
             if c >= 1:
                 break
         except ValueError:
-            print('Enter Valid Input')
+            print('\nEnter Valid Input')
     return c
 
 
 def numberofmailtosend():
     while True:
         try:
-            c = int(input('Enter, Number of Times to Send this message (Range 1 to 10): '))
+            c = int(input('\nEnter, Number of times you what to send this message to receiver (Range 1 to 10): '))
             if c <= 10 and c >= 1:
                 break
-            print('Enter value within Range (1 to 10)')
+            print('\nEnter value within Range (1 to 10)')
         except ValueError:
-            print('Enter Valid Input')
+            print('\nEnter Valid Input')
     return c
 
 
@@ -84,8 +70,8 @@ def main():
     a = subject1()
     c = sender_ID()
     d = password()
-    receiver_ID = input('Enter Receiver Email ID:')
-    e = input('message: ')
+    receiver_ID = input('\n\033[31mEnter Receiver Email ID:\033[0m')
+    e = input('\n\033[31mMessage: \033[0m')
     f = duration()
     counttotal = numberofmailtosend()
     count = 1
@@ -104,10 +90,11 @@ def main():
         server.sendmail(c, receiver_ID, text)
         server.quit()
 
-        print(f'{count} Message Send to {receiver_ID}')
+        print(f'\033[31m{count}\0330m Message Send to \033[31m{receiver_ID}\033[0m')
         count += 1
         if count >= counttotal:
-            print('Thank You')
+            time.sleep(3)
+            print('\nThank You and team to support to develop this tool.\nFORTIFY SOLUTIONS')
             break
 
 heading()
